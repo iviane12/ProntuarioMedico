@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Clínica Médica</title>
+</head>
+<body>
+<h1>Bem-vindo ao Sistema de Clínica Médica</h1>
+<h2>Menu Principal</h2>
+
+<ul>
+    <li><a th:href="@{/paciente/list}">Gerenciar Pacientes</a></li>
+    <li><a th:href="@{/medico/list}">Gerenciar Médicos</a></li>
+    <li><a th:href="@{/consulta/list}">Gerenciar Consultas</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Paciente</title>
+</head>
+<body>
+<h1>Cadastro de Paciente</h1>
+
+<form th:action="${paciente.id == null} ? @{/paciente/save} : @{/paciente/update}"
+      th:object="${paciente}" method="post">
+
+  <input type="hidden" th:field="*{id}" />
+
+  <label>Nome:</label>
+  <input type="text" th:field="*{nome}" required /><br><br>
+
+  <label>Telefone:</label>
+  <input type="text" th:field="*{telefone}" required /><br><br>
+
+  <button type="submit">Salvar</button>
+  <a th:href="@{/paciente/list}">Cancelar</a>
+</form>
+</body>
+</html>

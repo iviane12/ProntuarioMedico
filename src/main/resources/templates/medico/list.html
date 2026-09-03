@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Médicos</title>
+</head>
+<body>
+<h1>Médicos Cadastrados</h1>
+<a th:href="@{/medico/form}">+ Novo Médico</a> <br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>CRM</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${medicos}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.nome}"></td>
+        <td th:text="${m.crm}"></td>
+        <td>
+            <a th:href="@{/medico/edit/{id}(id=${m.id})}">Editar</a> |
+            <a onclick="return window.confirm('Excluir este médico?')"
+               th:href="@{/medico/remove/{id}(id=${m.id})}">Excluir</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
