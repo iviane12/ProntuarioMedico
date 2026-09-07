@@ -12,8 +12,9 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 
 public abstract class PessoaFisica extends Pessoa {
 
-    private String nome; // O nome que estava no Paciente/Medico agora vem para cá
+    private String nome;
     private String cpf;
+
 
     public PessoaFisica() {}
 

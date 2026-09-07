@@ -7,8 +7,7 @@ import java.io.Serializable;
 // Avisa ao JPA que esta classe é uma entidade e deve virar uma tabela no banco de dados.
 @Entity
 
-//JOINED: O JPA vai criar uma tabela separada para Pessoa,
-//e ligar as filhas a ela através do ID.
+//JOINED: O JPA vai criar uma tabela separada para Pessoa, e ligar as filhas a ela através do ID.
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa  implements java.io.Serializable {
 

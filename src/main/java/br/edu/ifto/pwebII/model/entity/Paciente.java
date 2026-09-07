@@ -19,8 +19,7 @@ public class Paciente implements Serializable {
     private String nome;
     private String telefone;
 
-    // Define que UM paciente pode estar associado a MUITAS consultas.
-    // O 'mappedBy' indica que o mapeamento principal foi feito no atributo 'paciente' da classe Consulta.
+    // Define que UM paciente pode estar associado a MUITAS consultas. O 'mappedBy' indica que o mapeamento principal foi feito no atributo 'paciente' da classe Consulta.
     @OneToMany(mappedBy = "paciente")
     private List<Consulta> consultas;
 
