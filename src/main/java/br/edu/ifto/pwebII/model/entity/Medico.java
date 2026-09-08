@@ -1,36 +1,25 @@
 package br.edu.ifto.pwebII.model.entity;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 // Avisa ao JPA que esta classe é uma entidade e deve virar uma tabela no banco de dados.
 @Entity
-public class Medico implements Serializable {
 
-    // Define que o atributo logo abaixo 'id' será a chave primária da tabela no banco de dados
-    @Id
+// Diz que a chave primária da tabela Paciente vai se ligar à tabela PessoaFisica
+@PrimaryKeyJoinColumn(name = "id_pessoa_fisica")
 
-    //Configura o banco de dados para gerar os números do ID de forma automática e sequencial '1, 2, 3, 4...'
-    //Do tipo auto-incremento
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Medico extends PessoaJuridica {
 
-    private String nome;
     private String crm;
 
-    // Define que UM medico pode estar associado a MUITAS consultas.
-    // O 'mappedBy' indica que o mapeamento principal foi feito no atributo 'medico' da classe Consulta.
+    // Define que UM medico pode estar associado a MUITAS consultas. O 'mappedBy' indica que o mapeamento principal foi feito no atributo 'paciente' da classe Consulta.
     @OneToMany(mappedBy = "medico")
     private List<Consulta> consultas;
 
     public Medico() {}
 
     // Getters e Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
     public String getCrm() { return crm; }
     public void setCrm(String crm) { this.crm = crm; }
     public List<Consulta> getConsultas() { return consultas; }

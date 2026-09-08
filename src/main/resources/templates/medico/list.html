@@ -14,6 +14,8 @@
         <th>ID</th>
         <th>Nome</th>
         <th>CRM</th>
+        <th>CPF</th>
+        <th>E-mail</th>
         <th>Ações</th>
     </tr>
     </thead>
@@ -22,6 +24,8 @@
         <td th:text="${m.id}"></td>
         <td th:text="${m.nome}"></td>
         <td th:text="${m.crm}"></td>
+        <td th:text="${m.cpf}"></td>
+        <td th:text="${m.email}"></td>
         <td>
             <a th:href="@{/medico/edit/{id}(id=${m.id})}">Editar</a> |
             <a onclick="return window.confirm('Excluir este médico?')"

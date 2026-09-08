@@ -18,6 +18,15 @@
     <label>CRM:</label>
     <input type="text" th:field="*{crm}" required /><br><br>
 
+    <label>CPF:</label>
+    <input type="text" th:field="*{cpf}" required /><br><br>
+
+    <label>E-mail:</label>
+    <input type="email" th:field="*{email}" /><br><br>
+
+    <label>Telefone:</label>
+    <input type="text" th:field="*{telefone}" /><br><br>
+
     <button type="submit">Salvar</button>
     <a th:href="@{/medico/list}">Cancelar</a>
 </form>
