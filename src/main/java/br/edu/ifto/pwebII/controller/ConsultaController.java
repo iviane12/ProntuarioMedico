@@ -31,7 +31,7 @@ public class ConsultaController {
 
     @GetMapping("/form")
     public ModelAndView form(Consulta consulta, ModelMap model) {
-        // Mandamos a lista de pacientes e médicos para a View montar as caixas de seleção (select)
+        // Mandamos a lista de pacientes e médicos para a View montar as caixas de seleção
         model.addAttribute("pacientes", pacienteRepository.listar());
         model.addAttribute("medicos", medicoRepository.listar());
         return new ModelAndView("consulta/form", model);

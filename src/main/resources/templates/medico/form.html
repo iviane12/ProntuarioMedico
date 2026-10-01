@@ -1,34 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Formulário de Médico</title>
-</head>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head(title='Formulário de Médico')}"></head>
+
 <body>
-<h1>Cadastro de Médico</h1>
+<main>
+    <div class="container mt-4">
+        <h2 class="text-primary mb-4">Cadastro de Médico</h2>
 
-<form th:action="${medico.id == null} ? @{/medico/save} : @{/medico/update}"
-      th:object="${medico}" method="post">
+        <form class="card p-4 shadow-sm" th:action="${medico.id == null} ? @{/medico/save} : @{/medico/update}"
+              th:object="${medico}" method="post">
 
-    <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{id}" />
 
-    <label>Nome:</label>
-    <input type="text" th:field="*{nome}" required /><br><br>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Nome:</label>
+                    <input type="text" class="form-control" th:field="*{nome}" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">CRM:</label>
+                    <input type="text" class="form-control" th:field="*{crm}" required />
+                </div>
+            </div>
 
-    <label>CRM:</label>
-    <input type="text" th:field="*{crm}" required /><br><br>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">CPF:</label>
+                    <input type="text" class="form-control" th:field="*{cpf}" required />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">E-mail:</label>
+                    <input type="email" class="form-control" th:field="*{email}" />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Telefone:</label>
+                    <input type="text" class="form-control" th:field="*{telefone}" />
+                </div>
+            </div>
 
-    <label>CPF:</label>
-    <input type="text" th:field="*{cpf}" required /><br><br>
-
-    <label>E-mail:</label>
-    <input type="email" th:field="*{email}" /><br><br>
-
-    <label>Telefone:</label>
-    <input type="text" th:field="*{telefone}" /><br><br>
-
-    <button type="submit">Salvar</button>
-    <a th:href="@{/medico/list}">Cancelar</a>
-</form>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Salvar Médico</button>
+                <a th:href="@{/medico/list}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

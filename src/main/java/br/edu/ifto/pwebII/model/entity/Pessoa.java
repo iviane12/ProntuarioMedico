@@ -1,6 +1,9 @@
 package br.edu.ifto.pwebII.model.entity;
 
-import jakarta.persistence.*;
+import
+        jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
@@ -9,7 +12,7 @@ import java.io.Serializable;
 
 //JOINED: O JPA vai criar uma tabela separada para Pessoa, e ligar as filhas a ela através do ID.
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pessoa  implements java.io.Serializable {
+public abstract class Pessoa  implements java.io.Serializable {
 
     // Define que o atributo logo abaixo 'id' será a chave primária da tabela no banco de dados
     @Id
@@ -18,18 +21,20 @@ public class Pessoa  implements java.io.Serializable {
     //Do tipo auto-incremento
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
+    @NotBlank(message = "O e-mail é obrigatório.")
+    @Email(message = "Informe um e-mail válido.")
     private String email;
+
+    @NotBlank(message = "O telefone é obrigatório.")
     private String telefone;
-
-    public Pessoa(){}
-
-    // Getters e Setters
-
 
     public Long getId() {
 
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;

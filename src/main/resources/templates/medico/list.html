@@ -1,38 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Médicos</title>
-</head>
-<body>
-<h1>Médicos Cadastrados</h1>
-<a th:href="@{/medico/form}">+ Novo Médico</a> <br><br>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}" xmlns:th="http://www.thymeleaf.org">
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>CRM</th>
-        <th>CPF</th>
-        <th>E-mail</th>
-        <th>Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="m : ${medicos}">
-        <td th:text="${m.id}"></td>
-        <td th:text="${m.nome}"></td>
-        <td th:text="${m.crm}"></td>
-        <td th:text="${m.cpf}"></td>
-        <td th:text="${m.email}"></td>
-        <td>
-            <a th:href="@{/medico/edit/{id}(id=${m.id})}">Editar</a> |
-            <a onclick="return window.confirm('Excluir este médico?')"
-               th:href="@{/medico/remove/{id}(id=${m.id})}">Excluir</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<head th:replace="~{fragments/head :: head(title='Lista de Médicos')}"></head>
+
+<body>
+<main>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary">Médicos Cadastrados</h2>
+            <a th:href="@{/medico/form}" class="btn btn-success">+ Novo Médico</a>
+        </div>
+
+        <table class="table table-striped table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CRM</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th class="text-center">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${medicos}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.nome}"></td>
+                <td th:text="${m.crm}"></td>
+                <td th:text="${m.cpf}"></td>
+                <td th:text="${m.email}"></td>
+                <td class="text-center">
+                    <a th:href="@{/medico/edit/{id}(id=${m.id})}" class="btn btn-sm btn-warning">Editar</a>
+                    <a onclick="return window.confirm('Excluir este médico?')"
+                       th:href="@{/medico/remove/{id}(id=${m.id})}" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 </body>
 </html>
