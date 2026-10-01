@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema de Clínica Médica</title>
-</head>
-<body>
-<h1>Bem-vindo ao Sistema de Clínica Médica</h1>
-<h2>Menu Principal</h2>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}" xmlns:th="http://www.thymeleaf.org">
 
-<ul>
-    <li><a th:href="@{/paciente/list}">Gerenciar Pacientes</a></li>
-    <li><a th:href="@{/medico/list}">Gerenciar Médicos</a></li>
-    <li><a th:href="@{/consulta/list}">Gerenciar Consultas</a></li>
-</ul>
+<head th:replace="~{fragments/head :: head(title='Sistema de Clínica Médica')}"></head>
+
+<body>
+<main>
+    <div class="container mt-5 text-center">
+        <h1 class="display-4 text-primary mb-4">Bem-vindo ao Sistema Clínico</h1>
+        <p class="lead">Selecione uma das opções abaixo para gerenciar o sistema:</p>
+
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a th:href="@{/paciente/list}" class="btn btn-outline-primary btn-lg">Gerenciar Pacientes</a>
+            <a th:href="@{/medico/list}" class="btn btn-outline-success btn-lg">Gerenciar Médicos</a>
+            <a th:href="@{/consulta/list}" class="btn btn-outline-info btn-lg">Gerenciar Consultas</a>
+        </div>
+    </div>
+</main>
 </body>
 </html>
