@@ -3,6 +3,8 @@ package br.edu.ifto.pwebII.model.entity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -27,13 +29,13 @@ public class Consulta implements Serializable {
 
     private String observacao;
 
-
-    @NotNull(message = "Selecione um paciente.")
     // @ManyToOne indica o relacionamento Muitos para Um. Várias consultas pertencem a um único Paciente.
     // A classe Consulta é a "dona" do relacionamento lado forte. É ela quem guarda o ID do paciente.
+    @NotNull(message = "Selecione um paciente.")
     @ManyToOne
     // @JoinColumn é usada para definir o nome exato da coluna que será a Chave Estrangeira no banco.
     @JoinColumn(name = "id_paciente")
+    @Valid
     private Paciente paciente;
 
 

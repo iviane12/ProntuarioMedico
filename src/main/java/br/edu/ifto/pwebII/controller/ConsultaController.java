@@ -45,10 +45,10 @@ public class ConsultaController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid Consulta consulta, BindingResult result, ModelMap model) {
-        // Mudado para 'paciente.id' e 'medico.id' para o Thymeleaf reconhecer na view
+        /*
         if (consulta.getPaciente() == null || consulta.getPaciente().getId() == null) {
             result.rejectValue("paciente.id", "error.paciente", "Selecione um paciente.");
-        }
+        }*/
         if (consulta.getMedico() == null || consulta.getMedico().getId() == null) {
             result.rejectValue("medico.id", "error.medico", "Selecione um médico.");
         }
