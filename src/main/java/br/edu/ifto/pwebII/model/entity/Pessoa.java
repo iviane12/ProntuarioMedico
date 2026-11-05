@@ -1,6 +1,8 @@
 package br.edu.ifto.pwebII.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
@@ -18,8 +20,15 @@ public class Pessoa  implements java.io.Serializable {
     //Do tipo auto-incremento
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //O NotBlank é para Exige texto com algum caractere que não seja espaço em branco.
+    @NotBlank(message = "O e-mail é obrigatório.")
+    @Email(message = "Informe um e-mail válido.")
     private String email;
+
+    @NotBlank(message = "O telefone é obrigatório.")
     private String telefone;
+
 
     public Pessoa(){}
 

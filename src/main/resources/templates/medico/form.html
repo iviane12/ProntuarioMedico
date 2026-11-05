@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{fragments/head :: head(title='Formulário de Médico')}"></head>
-
 <body>
 <main>
     <div class="container mt-4">
         <h2 class="text-primary mb-4">Cadastro de Médico</h2>
 
-        <form class="card p-4 shadow-sm" th:action="${medico.id == null} ? @{/medico/save} : @{/medico/update}"
-              th:object="${medico}" method="post">
-
+        <form class="card p-4 shadow-sm" th:action="${medico.id == null} ? @{/medico/save} : @{/medico/update}" th:object="${medico}" method="post">
             <input type="hidden" th:field="*{id}" />
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Nome:</label>
-                    <input type="text" class="form-control" th:field="*{nome}" required />
+                    <input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{nome}" />
+                    <span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label">CRM:</label>
-                    <input type="text" class="form-control" th:field="*{crm}" required />
+                    <input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{crm}" />
+                    <span class="invalid-feedback" th:if="${#fields.hasErrors('crm')}" th:errors="*{crm}"></span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label class="form-label">CPF:</label>
-                    <input type="text" class="form-control" th:field="*{cpf}" required />
+                    <input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{cpf}" />
+                    <span class="invalid-feedback" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label class="form-label">E-mail:</label>
-                    <input type="email" class="form-control" th:field="*{email}" />
+                    <input type="email" class="form-control" th:errorclass="is-invalid" th:field="*{email}" />
+                    <span class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" th:field="*{telefone}" />
+                    <input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{telefone}" />
+                    <span class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
                 </div>
             </div>
 

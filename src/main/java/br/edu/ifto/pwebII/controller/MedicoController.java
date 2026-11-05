@@ -2,8 +2,10 @@ package br.edu.ifto.pwebII.controller;
 
 import br.edu.ifto.pwebII.model.entity.Medico;
 import br.edu.ifto.pwebII.model.repository.MedicoRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,10 @@ public class MedicoController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save(Medico medico) {
+    public ModelAndView save(@Valid Medico medico, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("medico/form");
+        }
         repository.save(medico);
         return new ModelAndView("redirect:/medico/list");
     }
@@ -44,7 +49,10 @@ public class MedicoController {
     }
 
     @PostMapping("/update")
-    public ModelAndView update(Medico medico) {
+    public ModelAndView update(@Valid Medico medico, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("medico/form");
+        }
         repository.update(medico);
         return new ModelAndView("redirect:/medico/list");
     }

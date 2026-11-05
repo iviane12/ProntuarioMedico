@@ -2,11 +2,14 @@ package br.edu.ifto.pwebII.model.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
+import jakarta.validation.constraints.NotBlank;
 
 // Avisa ao JPA que esta classe é uma entidade e deve virar uma tabela no banco de dados.
 @Entity
 public class Medico extends PessoaFisica   {
 
+
+    @NotBlank(message = " O CRM é obrigatório. ")
     private String crm;
 
     // UM medico pode estar associado a MUITAS consultas. O 'mappedBy' indica que o mapeamento principal foi feito no atributo 'paciente' da classe Consulta.

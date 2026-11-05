@@ -2,14 +2,15 @@ package br.edu.ifto.pwebII.controller;
 
 import br.edu.ifto.pwebII.model.entity.Paciente;
 import br.edu.ifto.pwebII.model.repository.PacienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 @Controller
 @RequestMapping("paciente")
 public class PacienteController {
@@ -33,9 +34,14 @@ public class PacienteController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save(Paciente paciente) {
+    public ModelAndView save(@Valid Paciente paciente, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("paciente/form");
+        }
+
         repository.save(paciente);
         return new ModelAndView("redirect:/paciente/list");
+
     }
 
     @GetMapping("/edit/{id}")
@@ -45,7 +51,11 @@ public class PacienteController {
     }
 
     @PostMapping("/update")
-    public ModelAndView update(Paciente paciente) {
+    public ModelAndView update(@Valid Paciente paciente, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("paciente/form");
+        }
+
         repository.update(paciente);
         return new ModelAndView("redirect:/paciente/list");
     }
